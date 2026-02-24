@@ -1,39 +1,21 @@
 #ifndef CLIB_VECTOR_H
 #define CLIB_VECTOR_H
 
-#include <stdbool.h>
 #include <stddef.h>
 
-typedef struct {
-    void *data;
-    size_t size;
-    size_t capacity;
-    size_t elem_size;
-} clib_vector;
+typedef struct Vector {
+  size_t size;
+  size_t capacity;
+  void **data;
+} vector_t;
 
-/*--- Lifecycle ---*/
-clib_vector *clib_vector_new(size_t elem_size);
-void         clib_vector_free(clib_vector *vec);
+vector_t *new_vector(size_t capacity);
+void free_vector(vector_t *vector_ptr);
 
-/*--- Capacity ---*/
-size_t clib_vector_size(const clib_vector *vec);
-size_t clib_vector_capacity(const clib_vector *vec);
-bool   clib_vector_empty(const clib_vector *vec);
-int    clib_vector_reserve(clib_vector *vec, size_t capacity);
-int    clib_vector_shrink_to_fit(clib_vector *vec);
+void vector_push_back(vector_t *vector_ptr, void *data);
+void *vector_pop_back(vector_t *vector_ptr);
 
-/*--- Element access ---*/
-void *clib_vector_at(const clib_vector *vec, size_t index);
-void *clib_vector_front(const clib_vector *vec);
-void *clib_vector_back(const clib_vector *vec);
-void *clib_vector_data(const clib_vector *vec);
+void *vector_at(vector_t *vector_ptr, size_t index);
+void *vector_data(vector_t *vector_ptr);
 
-/*--- Modifiers ---*/
-int  clib_vector_push_back(clib_vector *vec, const void *elem);
-int  clib_vector_pop_back(clib_vector *vec);
-int  clib_vector_insert(clib_vector *vec, size_t index, const void *elem);
-int  clib_vector_erase(clib_vector *vec, size_t index);
-void clib_vector_clear(clib_vector *vec);
-int  clib_vector_resize(clib_vector *vec, size_t size);
-
-#endif /* CLIB_VECTOR_H */
+#endif
