@@ -29,6 +29,9 @@ build/
 # Dependency files
 *.d
 
+# Generated
+compile_commands.json
+
 # CMake
 CMakeCache.txt
 CMakeFiles/
@@ -46,3 +49,6 @@ Makefile
 # OS
 .DS_Store
 Thumbs.db
+
+# CACHES
+.cache
