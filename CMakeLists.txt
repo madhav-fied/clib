@@ -24,10 +24,14 @@ option(ENABLE_COVERAGE "Enable code coverage" OFF)
 # Source files
 set(SOURCES
     src/vector.c
+    src/stack.c
+    src/queue.c
 )
 
 set(HEADERS
     include/clib/vector.h
+    include/clib/stack.h
+    include/clib/queue.h
 )
 
 # Create library
